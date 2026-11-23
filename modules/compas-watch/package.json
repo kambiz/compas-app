@@ -1,0 +1,8 @@
+{
+  "name": "compas-watch",
+  "version": "1.0.0",
+  "description": "Relays Apple Watch remote commands to the connected Compas player (iOS only)",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {}
+}

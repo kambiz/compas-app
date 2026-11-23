@@ -12,6 +12,7 @@ import {
 } from '../data/types';
 import { RemoteApi } from '../data/RemoteApi';
 import { PIN_NOT_SAVED_MESSAGE } from '../data/SecurePinStore';
+import { shareWifiPlayerWithWatch } from '../../modules/compas-watch/src';
 import { fromNumeric } from './playbackModes';
 import { ratingFromStatus } from './trackRating';
 
@@ -136,6 +137,7 @@ const commitConnection = (
   AsyncStorage.setItem(PREF_LAST_TRANSPORT, transport === ConnectionTransport.Wifi ? 'wifi' : 'bluetooth').catch(() => {});
   if (transport === ConnectionTransport.Wifi) {
     AsyncStorage.setItem(PREF_WIFI_ADDRESS, playerKey).catch(() => {});
+    shareWifiPlayerWithWatch(playerKey, api.currentPin);
   } else {
     AsyncStorage.setItem(PREF_BLUETOOTH_ID, playerKey.slice(3)).catch(() => {});
   }

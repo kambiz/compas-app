@@ -41,6 +41,11 @@ export class RemoteApiConnection {
     this.pin = pin || null;
   }
 
+  /** The PIN this connection sends, if any (shared with the iOS watch relay). */
+  get currentPin(): string | null {
+    return this.pin;
+  }
+
   setPin(pin: string | null): void {
     if (pin != null && !/^[0-9]{4,12}$/.test(pin)) {
       throw new Error('PIN must contain 4 to 12 digits');

@@ -1,4 +1,5 @@
 import type { SessionState } from './useSessionRefs';
+import { clearWatchPlayer } from '../../modules/compas-watch/src';
 import { type ActionOf } from './remoteActionDispatch';
 import { PREF_WIFI_ADDRESS, PREF_BLUETOOTH_ID, PREF_AUTO_RECONNECT } from './sessionPreferences';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -40,6 +41,7 @@ const handleDisconnect = (deps: ConnectionActionsDependencies) => {
   const { disconnect } = deps;
   autoReconnectEnabledRef.current = false;
   AsyncStorage.setItem(PREF_AUTO_RECONNECT, 'false').catch(() => {});
+  clearWatchPlayer();
   disconnect();
 };
 

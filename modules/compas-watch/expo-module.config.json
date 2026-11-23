@@ -1,0 +1,8 @@
+{
+  "name": "compas-watch",
+  "platforms": ["apple"],
+  "apple": {
+    "modules": ["CompasWatchModule"],
+    "appDelegateSubscribers": ["CompasWatchAppDelegateSubscriber"]
+  }
+}

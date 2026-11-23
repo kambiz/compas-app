@@ -12,6 +12,7 @@
     "compas-files": "file:./modules/compas-files",
     "compas-media-session": "file:./modules/compas-media-session",
     "compas-updates": "file:./modules/compas-updates",
+    "compas-watch": "file:modules/compas-watch",
     "expo": "~57.0.25",
     "expo-blur": "~57.0.3",
     "expo-build-properties": "~57.0.22",
@@ -31,6 +32,7 @@
     "react-native-worklets": "0.10.1"
   },
   "devDependencies": {
+    "@bacons/apple-targets": "^5.0.0",
     "@types/jest": "30.0.0",
     "@types/react": "~19.2.2",
     "jest": "30.5.2",
