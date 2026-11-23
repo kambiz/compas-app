@@ -6,6 +6,32 @@ An unofficial port of the [Compás Remote](https://github.com/Starnished66/compa
 
 > **Status:** working in the iOS Simulator and tested against a real HiBy R1. It's not yet on TestFlight or the App Store. This is a community port, not affiliated with or endorsed by the Compás project or HiBy.
 
+## Screenshots
+
+### iPhone
+
+<p>
+  <img src="docs/images/iphone-01-now-playing.jpg" width="19%" alt="Now Playing">
+  <img src="docs/images/iphone-02-library.jpg" width="19%" alt="Library album grid">
+  <img src="docs/images/iphone-03-album.jpg" width="19%" alt="Album page">
+  <img src="docs/images/iphone-04-transfer.jpg" width="19%" alt="Transfer to the SD card">
+  <img src="docs/images/iphone-06-now-playing-dark.jpg" width="19%" alt="Now Playing in dark mode">
+</p>
+
+### iPad
+
+<p>
+  <img src="docs/images/ipad-01-now-playing.jpg" width="32%" alt="Full-screen Now Playing on iPad">
+  <img src="docs/images/ipad-02-library.jpg" width="32%" alt="Library on iPad">
+  <img src="docs/images/ipad-03-transfer.jpg" width="32%" alt="Side-by-side file transfer on iPad">
+</p>
+
+### Apple Watch
+
+<img src="docs/images/watch-now-playing.png" width="180" alt="Apple Watch remote">
+
+Taken in the iOS Simulator connected to a real HiBy R1. Full-size App Store versions are in [`docs/app-store/screenshots/`](docs/app-store/screenshots/).
+
 ---
 
 ## What works
