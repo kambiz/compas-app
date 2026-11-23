@@ -106,6 +106,9 @@ Changes to shared code are kept small and are mostly behind `Platform.OS` checks
 
 - Deleting a folder on the player's SD card only works when the folder is empty. This comes from the shared code or the firmware, not the port.
 - The iOS bundle ID is currently `com.compas.remote`, borrowed from the Android app. It must change before an App Store release.
+- **Cover requests retry too fast while the player is busy.** While the R1 is playing, it answers album-cover requests with HTTP 503 ("busy"). The app retries immediately, at about 4 requests a second; on 2026-11-23 we saw 1,265 such replies in 5 minutes. As a result, the library cover sync stalls and the playing track's cover may not appear until playback is paused. When playback is paused, the sync finishes normally.
+  - **Fix needed:** back off after a 503, for example by honouring a `Retry-After` value or waiting with increasing delays, and pause the cover sync while the player is busy.
+  - The retry logic is in the shared code, so Android over Wi-Fi is probably affected too. This is worth raising with the Compás author.
 
 ## Keeping up with the original app
 
