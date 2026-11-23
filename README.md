@@ -14,16 +14,16 @@ The upstream app is built with Expo / React Native, so the shared TypeScript UI 
 | Lock-screen controls | Later |
 | In-app self-updates | Not applicable — App Store builds update through the App Store |
 | iPad layout | Planned (Phase 3) |
-| Apple Watch | Planned (Phase 4, separate SwiftUI target) |
+| Apple Watch | Working in the simulator: now playing, play/pause, skip, Digital Crown volume — relayed through the iPhone app |
 
 ## Roadmap
 
 0. Tooling, fork, README ✓
 1. Stub native modules so the app launches in the iOS Simulator ✓
 2. Swift Wi-Fi discovery; test on a real R1 ✓
-3. Polish: iPad orientation, icons, privacy strings, iOS wording, native file transfers ← *next*
-4. Apple Watch companion
-5. TestFlight and App Store
+3. Polish: iPad orientation, icons, privacy strings, iOS wording, native file transfers ✓
+4. Apple Watch companion ✓
+5. TestFlight and App Store ← *next*
 
 ## Building (macOS)
 
