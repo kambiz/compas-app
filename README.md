@@ -13,7 +13,7 @@ The upstream app is built with Expo / React Native, so the shared TypeScript UI 
 | Bluetooth connection | **Not supported on iOS** — the player uses Bluetooth Classic RFCOMM, which iOS only allows for MFi-certified accessories |
 | Lock-screen controls | Later |
 | In-app self-updates | Not applicable — App Store builds update through the App Store |
-| iPad layout | Planned (Phase 3) |
+| iPad layout | Working in all orientations; content centred on wide screens |
 | Apple Watch | Working in the simulator: now playing, play/pause, skip, Digital Crown volume — relayed through the iPhone app |
 
 ## Roadmap
@@ -27,10 +27,11 @@ The upstream app is built with Expo / React Native, so the shared TypeScript UI 
 
 ## Building (macOS)
 
-Requirements: Xcode, [Homebrew](https://brew.sh), Node.js and CocoaPods.
+Requirements: Xcode (with the iOS and watchOS simulators), Node.js and CocoaPods (Ruby 3+). Homebrew works (`brew install node cocoapods`), or install Node and a standalone Ruby into your home folder.
+
+Keep the project in a folder path without spaces — Expo's build scripts break on spaces.
 
 ```bash
-brew install node cocoapods
 npm install
 npx expo run:ios
 ```
