@@ -26,6 +26,8 @@ export const Size = {
   hitTarget: 48,
   rowArtwork: 44,
   gutter: 16,
+  // Content column on wide screens (iPad); App.tsx centres every tab inside it.
+  readableWidth: 720,
 } as const;
 
 export const Type = {

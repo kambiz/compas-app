@@ -32,6 +32,7 @@ import type { TransferApi } from './src/ui/screens/TransferScreen';
 import { UpdatesProvider } from './src/updates/UpdatesProvider';
 import { UpdateAnnouncements } from './src/ui/components/UpdateAnnouncements';
 import { useScreenInsets } from './src/ui/useScreenInsets';
+import { Size } from './src/ui/tokens';
 import { useConnectedPlayer } from './src/ui/useConnectedPlayer';
 import CrashReportRecovery from './src/diagnostics/CrashReportRecovery';
 import { deferScreen } from './src/ui/screens/deferScreen';
@@ -381,5 +382,5 @@ const styles = StyleSheet.create({
   root: { flex: 1 },
   content: { flex: 1 },
   // Tablets and landscape: keep the phone-sized layout centred instead of stretching edge to edge.
-  readableWidth: { width: '100%', maxWidth: 720, alignSelf: 'center' },
+  readableWidth: { width: '100%', maxWidth: Size.readableWidth, alignSelf: 'center' },
 });

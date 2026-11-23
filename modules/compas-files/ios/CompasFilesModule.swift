@@ -1,5 +1,6 @@
 import ExpoModulesCore
 import Foundation
+import UIKit
 
 /// Upper bound for one folder selection so a mistaken pick of a huge folder stays bounded.
 private let maxCollectedFiles = 10_000
@@ -84,7 +85,8 @@ public class CompasFilesModule: Module {
       let music = self.documentsURL.appendingPathComponent("Music", isDirectory: true)
       try? FileManager.default.createDirectory(at: music, withIntermediateDirectories: true)
       self.hideInternalFolders()
-      return [["name": "On this iPhone", "path": music.path, "removable": false]]
+      let device = UIDevice.current.userInterfaceIdiom == .pad ? "iPad" : "iPhone"
+      return [["name": "On this \(device)", "path": music.path, "removable": false]]
     }
 
     AsyncFunction("listDirectory") { (path: String, showHidden: Bool) -> [[String: Any]] in
