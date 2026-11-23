@@ -9,7 +9,7 @@ The upstream app is built with Expo / React Native, so the shared TypeScript UI 
 | Area | iOS status |
 |---|---|
 | Wi-Fi connection (Bonjour discovery, PIN, playback, library) | Working; tested against a real R1 |
-| File transfers (Transfer tab) | Uses the shared JS fallback; native iOS transfers are planned |
+| File transfers (Transfer tab) | Working: browses the app's Music folder (Files › On My iPhone › compás › Music) and the player's SD card; upload tested on a real R1 |
 | Bluetooth connection | **Not supported on iOS** — the player uses Bluetooth Classic RFCOMM, which iOS only allows for MFi-certified accessories |
 | Lock-screen controls | Later |
 | In-app self-updates | Not applicable — App Store builds update through the App Store |
