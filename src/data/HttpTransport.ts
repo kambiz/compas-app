@@ -187,6 +187,8 @@ export class SerializedHttpTransport implements HttpTransport, ArtworkPreemptibl
 
   private priority(request: HttpRequest): number {
     if (request.method === 'POST') return 0;
+    // The playing track's cover goes ahead of the library cover sync, which can queue hundreds of requests.
+    if (request.target === CURRENT_ARTWORK_TARGET) return 1;
     return isOptionalArtworkRequest(request.target) ? 2 : 1;
   }
 

@@ -21,8 +21,26 @@ public class CompasFilesModule: Module {
     FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
   }
 
+  /// Folders the app keeps in Documents for its own data (expo-sqlite catalog, synced cover cache).
+  /// Flagging them hidden keeps them out of the Files app, which only needs to show Music.
+  private static let internalFolders = ["SQLite", "synced-covers"]
+
+  private func hideInternalFolders() {
+    for name in Self.internalFolders {
+      var url = documentsURL.appendingPathComponent(name, isDirectory: true)
+      guard FileManager.default.fileExists(atPath: url.path) else { continue }
+      var values = URLResourceValues()
+      values.isHidden = true
+      try? url.setResourceValues(values)
+    }
+  }
+
   public func definition() -> ModuleDefinition {
     Name("CompasFiles")
+
+    OnCreate {
+      self.hideInternalFolders()
+    }
 
     Events("onUploadProgress")
 
@@ -65,6 +83,7 @@ public class CompasFilesModule: Module {
     Function("getRoots") { () -> [[String: Any]] in
       let music = self.documentsURL.appendingPathComponent("Music", isDirectory: true)
       try? FileManager.default.createDirectory(at: music, withIntermediateDirectories: true)
+      self.hideInternalFolders()
       return [["name": "On this iPhone", "path": music.path, "removable": false]]
     }
 

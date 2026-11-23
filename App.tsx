@@ -282,7 +282,7 @@ function renderAppTabs(session: AppSession, screens: AppScreens, navigation: App
       accessibilityElementsHidden={nowPlayingVisible}
       style={[styles.root, { paddingTop: insets.top, paddingLeft: insets.left, paddingRight: insets.right }]}
     >
-      <View style={styles.root}>
+      <View style={[styles.root, styles.readableWidth]}>
         <PageTransition style={styles.content} transitionKey={`${activeTab}:${connectionReturnCount}`} kind="fade">
           {TAB_ORDER.filter((tab) => visitedTabs.has(tab)).map((tab) => (
             <TabPane key={tab} active={tab === activeTab}>
@@ -380,4 +380,6 @@ function renderAppNowPlaying(state: RemoteUiState, onAction: AppSession['onActio
 const styles = StyleSheet.create({
   root: { flex: 1 },
   content: { flex: 1 },
+  // Tablets and landscape: keep the phone-sized layout centred instead of stretching edge to edge.
+  readableWidth: { width: '100%', maxWidth: 720, alignSelf: 'center' },
 });

@@ -66,7 +66,7 @@ export function SdBrowserView({ browser, canBrowse, canMutate, foldersOnly, onEn
       {browser.editing ? (
         <View style={styles.row}>
           <View style={styles.flex}>
-            <TextField value={browser.editValue} onChangeText={browser.setEditValue} autoFocus autoCapitalize="none"
+            <TextField value={browser.editValue} onChangeText={browser.setEditValue} autoFocus autoCapitalize="none" autoCorrect={false}
               placeholder={browser.editing.kind === 'mkdir' ? t('Folder name') : t('New name')}
               accessibilityLabel={browser.editing.kind === 'mkdir' ? t('Folder name') : t('New name')}
               onSubmitEditing={() => canBrowse && canMutate && void browser.saveEdit()} />
