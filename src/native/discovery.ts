@@ -24,7 +24,7 @@ export class NativeDiscovery {
     onDiscovered: (player: DiscoveredPlayer) => void,
     onLost: (id: string) => void
   ): () => void {
-    if (Platform.OS !== 'android' || !CompasDiscovery?.startDiscovery) {
+    if ((Platform.OS !== 'android' && Platform.OS !== 'ios') || !CompasDiscovery?.startDiscovery) {
       return () => {};
     }
 

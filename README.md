@@ -8,7 +8,8 @@ The upstream app is built with Expo / React Native, so the shared TypeScript UI 
 
 | Area | iOS status |
 |---|---|
-| Wi-Fi connection (Bonjour discovery, manual address, PIN) | Planned (Phase 2) |
+| Wi-Fi connection (Bonjour discovery, PIN, playback, library) | Working; tested against a real R1 |
+| File transfers (Transfer tab) | Uses the shared JS fallback; native iOS transfers are planned |
 | Bluetooth connection | **Not supported on iOS** — the player uses Bluetooth Classic RFCOMM, which iOS only allows for MFi-certified accessories |
 | Lock-screen controls | Later |
 | In-app self-updates | Not applicable — App Store builds update through the App Store |
@@ -17,10 +18,10 @@ The upstream app is built with Expo / React Native, so the shared TypeScript UI 
 
 ## Roadmap
 
-0. Tooling, fork, README ← *current*
-1. Stub native modules so the app launches in the iOS Simulator
-2. Swift Wi-Fi modules (discovery, files/HTTP); test on a real R1
-3. Polish: iPad orientation, icons, privacy strings
+0. Tooling, fork, README ✓
+1. Stub native modules so the app launches in the iOS Simulator ✓
+2. Swift Wi-Fi discovery; test on a real R1 ✓
+3. Polish: iPad orientation, icons, privacy strings, iOS wording, native file transfers ← *next*
 4. Apple Watch companion
 5. TestFlight and App Store
 
