@@ -1,8 +1,11 @@
 {
   "name": "compas-media-session",
-  "platforms": ["android"],
+  "platforms": ["android", "apple"],
   "android": {
     "package": "com.compas.remote.mediasession",
     "modules": ["com.compas.remote.mediasession.CompasMediaSessionModule"]
+  },
+  "apple": {
+    "modules": ["CompasMediaSessionModule"]
   }
 }

@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import { requireNativeModule } from 'expo-modules-core';
 
 export interface StorageRoot {
@@ -47,6 +48,8 @@ let nativeModuleResolved = false;
 function getNativeModule(): CompasFilesNativeModule | null {
   if (nativeModuleResolved) return nativeModule;
   nativeModuleResolved = true;
+  // TODO(Phase 2): the iOS module is only a stub so far; keep iOS on the JS fallback paths until it is implemented.
+  if (Platform.OS !== 'android') return (nativeModule = null);
   try {
     nativeModule = requireNativeModule<CompasFilesNativeModule>('CompasFiles');
   } catch {

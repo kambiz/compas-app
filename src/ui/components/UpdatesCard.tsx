@@ -35,7 +35,7 @@ export function UpdatesCard({ playerVersion }: { playerVersion?: string | null }
       <AppText variant="caption" tone="inkMuted">{t('Minimum Android API {version}', { version: updates.application.minSdk! })}</AppText>
       {updates.android && !updates.installPermission ? <Button label={t('Allow app installs')} variant="plain" size="sm" onPress={updates.requestInstallPermission} /> : null}
     </View> : null}
-    {!updates.application ? <View style={{ paddingHorizontal: Space.lg, paddingBottom: Space.md }}><AppText variant="caption" tone="inkMuted">{t(APP_UPDATE_URL ? 'No app update available' : 'Coming soon')}</AppText></View> : null}
+    {!updates.application && updates.android ? <View style={{ paddingHorizontal: Space.lg, paddingBottom: Space.md }}><AppText variant="caption" tone="inkMuted">{t(APP_UPDATE_URL ? 'No app update available' : 'Coming soon')}</AppText></View> : null}
     {playerVersion ? <>
       <ListRow title={t('Player version')} subtitle={t('Reported by the connected player: {version}', { version: playerVersion })} />
       <AppText variant="caption" tone="inkMuted">{t('Player software and firmware updates are separate.')}</AppText>

@@ -1,8 +1,11 @@
 {
   "name": "compas-discovery",
-  "platforms": ["android"],
+  "platforms": ["android", "apple"],
   "android": {
     "package": "com.compas.remote.discovery",
     "modules": ["com.compas.remote.discovery.CompasDiscoveryModule"]
+  },
+  "apple": {
+    "modules": ["CompasDiscoveryModule"]
   }
 }

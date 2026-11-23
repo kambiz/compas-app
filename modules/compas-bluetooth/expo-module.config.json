@@ -1,8 +1,11 @@
 {
   "name": "compas-bluetooth",
-  "platforms": ["android"],
+  "platforms": ["android", "apple"],
   "android": {
     "package": "com.compas.remote.bluetooth",
     "modules": ["com.compas.remote.bluetooth.CompasBluetoothModule"]
+  },
+  "apple": {
+    "modules": ["CompasBluetoothModule"]
   }
 }
