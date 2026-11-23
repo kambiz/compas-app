@@ -522,7 +522,7 @@ export const nl: Record<string, TranslationValue> = {
   "Couldn’t reach {name}": "Kan {name} niet bereiken",
   "Check that the player is on and nearby, then try again.": "Controleer of de speler aanstaat en in de buurt is, en probeer het vervolgens opnieuw.",
   "Not connected": "Niet verbonden",
-  "Find your player on Wi-Fi or Bluetooth to control what it plays.": "Zoek uw speler op Wi-Fi of Bluetooth om te bepalen wat hij afspeelt.",
+  "Find your player on Wi-Fi or Bluetooth to control what it plays.": "Zoek uw speler op Wi-Fi of Bluetooth om te bepalen wat hij afspeelt.", "Find your player on Wi-Fi to control what it plays.": "Zoek uw speler op Wi-Fi om te bepalen wat hij afspeelt.",
   "Playing on {name}": "Afspelen op {name}",
   "Playing on {name}. Connection and players": "Afspelen op {name}. Verbinding en spelers",
   "Up next, {songs}": "Vervolgens {songs}",

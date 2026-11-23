@@ -50,6 +50,9 @@ function withLocalNetwork(config) {
       'compás finds and controls your Compás player on your Wi-Fi network.';
     plist.NSBonjourServices = Array.from(new Set([...(plist.NSBonjourServices || []), '_compas-remote._tcp']));
     plist.NSAppTransportSecurity = { ...(plist.NSAppTransportSecurity || {}), NSAllowsLocalNetworking: true };
+    // Music is copied in through the Files app ("On My iPhone") or Finder file sharing.
+    plist.UIFileSharingEnabled = true;
+    plist.LSSupportsOpeningDocumentsInPlace = true;
     return config;
   });
 }

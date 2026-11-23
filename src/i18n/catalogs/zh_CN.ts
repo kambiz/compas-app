@@ -508,7 +508,7 @@ export const zh_CN: Record<string, TranslationValue> = {
   "Couldn’t reach {name}": "无法联系{name}",
   "Check that the player is on and nearby, then try again.": "检查播放器是否已打开且位于附近，然后重试。",
   "Not connected": "未连接",
-  "Find your player on Wi-Fi or Bluetooth to control what it plays.": "通过 Wi-Fi 或蓝牙找到您的播放器以控制其播放的内容。",
+  "Find your player on Wi-Fi or Bluetooth to control what it plays.": "通过 Wi-Fi 或蓝牙找到您的播放器以控制其播放的内容。", "Find your player on Wi-Fi to control what it plays.": "通过 Wi-Fi 找到您的播放器以控制其播放的内容。",
   "Playing on {name}": "正在播放 {name}",
   "Playing on {name}. Connection and players": "正在播放{name}。连接和播放器",
   "Up next, {songs}": "接下来，{songs}",

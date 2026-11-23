@@ -309,7 +309,7 @@ Object.assign(es, {
   'The queue on the player is empty': 'La cola del reproductor está vacía', 'Pick an album, playlist or song to start playing on the player.': 'Elige un álbum, una lista o una canción para empezar a reproducirla.',
   'Browse library': 'Explorar biblioteca', 'Connecting to {name}…': 'Conectando con {name}…', 'Playback controls appear here once the player answers.': 'Los controles de reproducción aparecerán cuando responda el reproductor.',
   'Connection failed': 'Error de conexión', 'Couldn’t reach {name}': 'No se pudo conectar con {name}', 'Check that the player is on and nearby, then try again.': 'Comprueba que el reproductor esté encendido y cerca; luego vuelve a intentarlo.',
-  'Not connected': 'Sin conexión', 'Find your player on Wi-Fi or Bluetooth to control what it plays.': 'Busca tu reproductor por Wi-Fi o Bluetooth para controlar lo que reproduce.',
+  'Not connected': 'Sin conexión', 'Find your player on Wi-Fi or Bluetooth to control what it plays.': 'Busca tu reproductor por Wi-Fi o Bluetooth para controlar lo que reproduce.', 'Find your player on Wi-Fi to control what it plays.': 'Busca tu reproductor por Wi-Fi para controlar lo que reproduce.',
   'Playing on {name}': 'Reproduciendo en {name}', 'Playing on {name}. Connection and players': 'Reproduciendo en {name}. Conexión y reproductores', 'Up next, {songs}': 'A continuación: {songs}',
   'the player': 'el reproductor', 'What this player supports, {state}': 'Funciones de este reproductor, {state}', '{feature}, {state}': '{feature}, {state}',
   'expanded': 'expandido', 'collapsed': 'contraído', 'supported': 'compatible', 'not supported': 'no compatible',

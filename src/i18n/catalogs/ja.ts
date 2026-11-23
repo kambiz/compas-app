@@ -508,7 +508,7 @@ export const ja: Record<string, TranslationValue> = {
   "Couldn’t reach {name}": "{name} に到達できませんでした",
   "Check that the player is on and nearby, then try again.": "プレーヤーがオンになっていて近くにあることを確認してから、もう一度試してください。",
   "Not connected": "未接続",
-  "Find your player on Wi-Fi or Bluetooth to control what it plays.": "Wi-Fi または Bluetooth でプレーヤーを見つけて、再生内容を制御します。",
+  "Find your player on Wi-Fi or Bluetooth to control what it plays.": "Wi-Fi または Bluetooth でプレーヤーを見つけて、再生内容を制御します。", "Find your player on Wi-Fi to control what it plays.": "Wi-Fi でプレーヤーを見つけて、再生内容を制御します。",
   "Playing on {name}": "{name}で再生中",
   "Playing on {name}. Connection and players": "{name}で再生中。接続とプレーヤー",
   "Up next, {songs}": "次は、{songs}",

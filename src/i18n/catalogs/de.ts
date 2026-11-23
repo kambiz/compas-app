@@ -285,7 +285,7 @@ Object.assign(de, {
   'The queue on the player is empty': 'Die Warteschlange des Players ist leer', 'Pick an album, playlist or song to start playing on the player.': 'Wähle ein Album, eine Playlist oder einen Titel zur Wiedergabe aus.',
   'Browse library': 'Mediathek durchsuchen', 'Connecting to {name}…': 'Verbindung zu {name} wird hergestellt…', 'Playback controls appear here once the player answers.': 'Die Wiedergabesteuerung erscheint, sobald der Player antwortet.',
   'Connection failed': 'Verbindung fehlgeschlagen', 'Couldn’t reach {name}': '{name} ist nicht erreichbar', 'Check that the player is on and nearby, then try again.': 'Prüfe, ob der Player eingeschaltet und in der Nähe ist, und versuche es erneut.',
-  'Not connected': 'Nicht verbunden', 'Find your player on Wi-Fi or Bluetooth to control what it plays.': 'Suche deinen Player über WLAN oder Bluetooth, um die Wiedergabe zu steuern.',
+  'Not connected': 'Nicht verbunden', 'Find your player on Wi-Fi or Bluetooth to control what it plays.': 'Suche deinen Player über WLAN oder Bluetooth, um die Wiedergabe zu steuern.', 'Find your player on Wi-Fi to control what it plays.': 'Suche deinen Player über WLAN, um die Wiedergabe zu steuern.',
   'Playing on {name}': 'Wiedergabe auf {name}', 'Playing on {name}. Connection and players': 'Wiedergabe auf {name}. Verbindung und Player', 'Up next, {songs}': 'Als Nächstes: {songs}',
   'the player': 'der Player', 'What this player supports, {state}': 'Funktionen dieses Players, {state}', '{feature}, {state}': '{feature}, {state}',
   'expanded': 'ausgeklappt', 'collapsed': 'eingeklappt', 'supported': 'unterstützt', 'not supported': 'nicht unterstützt',

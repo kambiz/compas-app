@@ -293,7 +293,7 @@ Object.assign(ru, {
   'The queue on the player is empty': 'Очередь плеера пуста', 'Pick an album, playlist or song to start playing on the player.': 'Выберите альбом, плейлист или песню для воспроизведения.',
   'Browse library': 'Открыть медиатеку', 'Connecting to {name}…': 'Подключение к {name}…', 'Playback controls appear here once the player answers.': 'Элементы управления появятся, когда плеер ответит.',
   'Connection failed': 'Не удалось подключиться', 'Couldn’t reach {name}': 'Не удалось связаться с {name}', 'Check that the player is on and nearby, then try again.': 'Убедитесь, что плеер включён и находится рядом, затем повторите попытку.',
-  'Not connected': 'Нет подключения', 'Find your player on Wi-Fi or Bluetooth to control what it plays.': 'Найдите плеер по Wi-Fi или Bluetooth, чтобы управлять воспроизведением.',
+  'Not connected': 'Нет подключения', 'Find your player on Wi-Fi or Bluetooth to control what it plays.': 'Найдите плеер по Wi-Fi или Bluetooth, чтобы управлять воспроизведением.', 'Find your player on Wi-Fi to control what it plays.': 'Найдите плеер по Wi-Fi, чтобы управлять воспроизведением.',
   'Playing on {name}': 'Воспроизведение на {name}', 'Playing on {name}. Connection and players': 'Воспроизведение на {name}. Подключение и плееры', 'Up next, {songs}': 'Далее: {songs}',
   'the player': 'плеер', 'What this player supports, {state}': 'Возможности плеера, {state}', '{feature}, {state}': '{feature}, {state}',
   'expanded': 'развёрнуто', 'collapsed': 'свёрнуто', 'supported': 'поддерживается', 'not supported': 'не поддерживается',

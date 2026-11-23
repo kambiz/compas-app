@@ -536,7 +536,7 @@ export const pt_PT: Record<string, TranslationValue> = {
   "Couldn’t reach {name}": "Não foi possível aceder a {name}",
   "Check that the player is on and nearby, then try again.": "Verifique se o leitor está ligado e próximo e tente novamente.",
   "Not connected": "Não ligada",
-  "Find your player on Wi-Fi or Bluetooth to control what it plays.": "Encontre o seu leitor em Wi-Fi ou Bluetooth para controlar o que reproduz.",
+  "Find your player on Wi-Fi or Bluetooth to control what it plays.": "Encontre o seu leitor em Wi-Fi ou Bluetooth para controlar o que reproduz.", "Find your player on Wi-Fi to control what it plays.": "Encontre o seu leitor em Wi-Fi para controlar o que reproduz.",
   "Playing on {name}": "A reproduzir em {name}",
   "Playing on {name}. Connection and players": "A reproduzir em {name}. Ligação e leitores",
   "Up next, {songs}": "A seguir, {songs}",

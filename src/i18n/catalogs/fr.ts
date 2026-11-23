@@ -284,7 +284,7 @@ Object.assign(fr, {
   'The queue on the player is empty': 'La file du lecteur est vide', 'Pick an album, playlist or song to start playing on the player.': 'Choisissez un album, une playlist ou un titre à lire sur le lecteur.',
   'Browse library': 'Parcourir la bibliothèque', 'Connecting to {name}…': 'Connexion à {name}…', 'Playback controls appear here once the player answers.': 'Les commandes de lecture apparaîtront lorsque le lecteur répondra.',
   'Connection failed': 'Échec de la connexion', 'Couldn’t reach {name}': '{name} est injoignable', 'Check that the player is on and nearby, then try again.': 'Vérifiez que le lecteur est allumé et à proximité, puis réessayez.',
-  'Not connected': 'Non connecté', 'Find your player on Wi-Fi or Bluetooth to control what it plays.': 'Trouvez votre lecteur en Wi-Fi ou Bluetooth pour contrôler la lecture.',
+  'Not connected': 'Non connecté', 'Find your player on Wi-Fi or Bluetooth to control what it plays.': 'Trouvez votre lecteur en Wi-Fi ou Bluetooth pour contrôler la lecture.', 'Find your player on Wi-Fi to control what it plays.': 'Trouvez votre lecteur en Wi-Fi pour contrôler la lecture.',
   'Playing on {name}': 'Lecture sur {name}', 'Playing on {name}. Connection and players': 'Lecture sur {name}. Connexion et lecteurs', 'Up next, {songs}': 'À suivre : {songs}',
   'the player': 'le lecteur', 'What this player supports, {state}': 'Fonctions prises en charge, {state}', '{feature}, {state}': '{feature}, {state}',
   'expanded': 'développé', 'collapsed': 'réduit', 'supported': 'pris en charge', 'not supported': 'non pris en charge',

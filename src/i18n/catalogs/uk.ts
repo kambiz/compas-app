@@ -550,7 +550,7 @@ export const uk: Record<string, TranslationValue> = {
   "Couldn’t reach {name}": "Не вдалося зв’язатися з {name}",
   "Check that the player is on and nearby, then try again.": "Переконайтеся, що плеєр увімкнено та знаходиться поблизу, а потім повторіть спробу.",
   "Not connected": "Не під’єднано",
-  "Find your player on Wi-Fi or Bluetooth to control what it plays.": "Знайдіть свій плеєр через Wi-Fi або Bluetooth, щоб керувати тим, що він відтворює.",
+  "Find your player on Wi-Fi or Bluetooth to control what it plays.": "Знайдіть свій плеєр через Wi-Fi або Bluetooth, щоб керувати тим, що він відтворює.", "Find your player on Wi-Fi to control what it plays.": "Знайдіть свій плеєр через Wi-Fi, щоб керувати тим, що він відтворює.",
   "Playing on {name}": "Відтворення на {name}",
   "Playing on {name}. Connection and players": "Відтворення на {name}. Підключення та Програвачі",
   "Up next, {songs}": "Далі, {songs}",

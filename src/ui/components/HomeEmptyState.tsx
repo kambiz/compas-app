@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { Platform, ScrollView, StyleSheet, View } from 'react-native';
 import { ConnectionStatus, LibraryCategory, RemoteAction, RemoteUiState } from '../../data/types';
 import { Size, Space } from '../tokens';
 import { HomeTitleBar } from './HomeTitleBar';
@@ -57,7 +57,10 @@ function emptyMessage(state: RemoteUiState, t: (source: string, variables?: Reco
       return {
         eyebrow: t('Not connected'),
         title: t('Connect to a player'),
-        body: t('Find your player on Wi-Fi or Bluetooth to control what it plays.'),
+        // iOS has no Bluetooth Classic (RFCOMM) transport, so only Wi-Fi is offered there.
+        body: Platform.OS === 'android'
+          ? t('Find your player on Wi-Fi or Bluetooth to control what it plays.')
+          : t('Find your player on Wi-Fi to control what it plays.'),
         actionLabel: t('Choose a player'),
         action: { type: 'OpenConnection' },
       };

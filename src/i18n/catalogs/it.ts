@@ -282,7 +282,7 @@ Object.assign(it, {
   'The queue on the player is empty': 'La coda del lettore è vuota', 'Pick an album, playlist or song to start playing on the player.': 'Scegli un album, una playlist o un brano da riprodurre sul lettore.',
   'Browse library': 'Sfoglia libreria', 'Connecting to {name}…': 'Connessione a {name}…', 'Playback controls appear here once the player answers.': 'I controlli di riproduzione appariranno quando il lettore risponde.',
   'Connection failed': 'Connessione non riuscita', 'Couldn’t reach {name}': 'Impossibile raggiungere {name}', 'Check that the player is on and nearby, then try again.': 'Verifica che il lettore sia acceso e vicino, poi riprova.',
-  'Not connected': 'Non connesso', 'Find your player on Wi-Fi or Bluetooth to control what it plays.': 'Trova il lettore tramite Wi-Fi o Bluetooth per controllare la riproduzione.',
+  'Not connected': 'Non connesso', 'Find your player on Wi-Fi or Bluetooth to control what it plays.': 'Trova il lettore tramite Wi-Fi o Bluetooth per controllare la riproduzione.', 'Find your player on Wi-Fi to control what it plays.': 'Trova il lettore tramite Wi-Fi per controllare la riproduzione.',
   'Playing on {name}': 'Riproduzione su {name}', 'Playing on {name}. Connection and players': 'Riproduzione su {name}. Connessione e lettori', 'Up next, {songs}': 'In coda: {songs}',
   'the player': 'il lettore', 'What this player supports, {state}': 'Funzioni supportate dal lettore, {state}', '{feature}, {state}': '{feature}, {state}',
   'expanded': 'espanso', 'collapsed': 'compresso', 'supported': 'supportato', 'not supported': 'non supportato',

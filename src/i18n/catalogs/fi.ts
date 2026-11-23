@@ -522,7 +522,7 @@ export const fi: Record<string, TranslationValue> = {
   "Couldn’t reach {name}": "Ei saatu yhteyttä {name}",
   "Check that the player is on and nearby, then try again.": "Tarkista, että soitin on päällä ja lähellä, ja yritä sitten uudelleen.",
   "Not connected": "Ei yhteyttä",
-  "Find your player on Wi-Fi or Bluetooth to control what it plays.": "Etsi soittimesi Wi-Fi- tai Bluetooth-yhteydestä hallitaksesi sen toistamista.",
+  "Find your player on Wi-Fi or Bluetooth to control what it plays.": "Etsi soittimesi Wi-Fi- tai Bluetooth-yhteydestä hallitaksesi sen toistamista.", "Find your player on Wi-Fi to control what it plays.": "Etsi soittimesi Wi-Fi-yhteydestä hallitaksesi sen toistamista.",
   "Playing on {name}": "Toistaminen {name}",
   "Playing on {name}. Connection and players": "Toistetaan {name}:lla. Yhteys ja soittimet",
   "Up next, {songs}": "Seuraavaksi {songs}",

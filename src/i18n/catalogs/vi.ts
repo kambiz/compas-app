@@ -508,7 +508,7 @@ export const vi: Record<string, TranslationValue> = {
   "Couldn’t reach {name}": "Không thể truy cập {name}",
   "Check that the player is on and nearby, then try again.": "Hãy kiểm tra xem trình phát đã bật và ở gần, rồi thử lại.",
   "Not connected": "Không được kết nối",
-  "Find your player on Wi-Fi or Bluetooth to control what it plays.": "Tìm trình phát của bạn trên Wi-Fi hoặc Bluetooth để kiểm soát nội dung trình phát.",
+  "Find your player on Wi-Fi or Bluetooth to control what it plays.": "Tìm trình phát của bạn trên Wi-Fi hoặc Bluetooth để kiểm soát nội dung trình phát.", "Find your player on Wi-Fi to control what it plays.": "Tìm trình phát của bạn trên Wi-Fi để kiểm soát nội dung trình phát.",
   "Playing on {name}": "Đang phát trên {name}",
   "Playing on {name}. Connection and players": "Đang phát trên {name}. Kết nối và máy nghe nhạc",
   "Up next, {songs}": "Tiếp theo, {songs}",
