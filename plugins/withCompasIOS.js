@@ -53,6 +53,9 @@ function withLocalNetwork(config) {
     // Music is copied in through the Files app ("On My iPhone") or Finder file sharing.
     plist.UIFileSharingEnabled = true;
     plist.LSSupportsOpeningDocumentsInPlace = true;
+    // Only Apple's built-in HTTPS is used (GitHub release checks), so the app is exempt from
+    // export-compliance documentation; this skips the question on every App Store Connect upload.
+    plist.ITSAppUsesNonExemptEncryption = false;
     return config;
   });
 }
