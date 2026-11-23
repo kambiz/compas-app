@@ -111,14 +111,14 @@ Changes to shared code are kept small and are mostly behind `Platform.OS` checks
 
 | Branch | Contents |
 |---|---|
-| `main` | Mirrors the original repository, [Starnished66/compas-app](https://github.com/Starnished66/compas-app) |
+| `master` | Mirrors the original repository, [Starnished66/compas-app](https://github.com/Starnished66/compas-app) |
 | `ios-port` | All iOS work |
 
 To bring in the author's latest changes:
 
 ```bash
 git fetch upstream
-git merge upstream/main
+git merge upstream/master
 ```
 
 The aim is to offer the iOS work back to the original project.
