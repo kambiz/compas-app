@@ -135,9 +135,7 @@ Changes to shared code are kept small and are mostly behind `Platform.OS` checks
 - After removing a song from Up Next, it stays listed for about 5 seconds until the next status update.
 - The player can take a few seconds to report a track or volume change, so the Apple Watch may briefly show the previous song.
 - The iOS bundle ID is currently `com.compas.remote`, borrowed from the Android app. It must change before an App Store release.
-- **Cover requests retry too fast while the player is busy.** While the R1 is playing, it answers album-cover requests with HTTP 503 ("busy"). The app retries immediately, at about 4 requests a second; on 2026-11-23 we saw 1,265 such replies in 5 minutes. As a result, the library cover sync stalls and the playing track's cover may not appear until playback is paused. When playback is paused, the sync finishes normally.
-  - **Fix needed:** back off after a 503, for example by honouring a `Retry-After` value or waiting with increasing delays, and pause the cover sync while the player is busy.
-  - The retry logic is in the shared code, so Android over Wi-Fi is probably affected too. This is worth raising with the Compás author.
+- While the player is playing, it refuses album-cover requests (HTTP 503, "busy"). A first library sync started during playback therefore waits ("Library sync paused") and finishes once playback is paused. The app now backs off (2 s, doubling to 30 s) instead of retrying several times a second; the same fix would help Android.
 
 ## Keeping up with the original app
 

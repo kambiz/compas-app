@@ -10,6 +10,10 @@ import type { CatalogCoverProgress } from '../data/SyncedCatalogStore';
 import { matchesStoredCatalogSnapshot } from './CatalogSyncPolicy';
 
 const CATALOG_SYNC_RETRY_DELAYS_MS = [2000, 5000, 15000];
+// The player answers 503 to cover requests while it is busy (for example during playback).
+// Wait before asking again: 2 s, doubling up to 30 s, back to no wait after a cover arrives.
+const COVER_BUSY_FIRST_DELAY_MS = 2000;
+const COVER_BUSY_MAX_DELAY_MS = 30000;
 
 interface CatalogSyncContext {
   api: Pick<RemoteApi, 'catalog' | 'catalogCovers'>;
@@ -293,6 +297,7 @@ const storePendingCovers = async (
   let done = downloadableTotal - pending.length;
   // A cover cut off by a timeout or a server error gets one more try at the end of this pass.
   const requeued = new Set<string>();
+  let busyDelayMs = 0;
 
   for (const cover of pending) {
     if (!ownsCoverDownloads()) return;
@@ -323,9 +328,19 @@ const storePendingCovers = async (
       }
       if (!ownsCoverDownloads()) return;
       if (onDisk && uri) coverUriMap.set(cover.albumKey, uri);
+      busyDelayMs = 0;
     } catch (err: any) {
       if (!ownsCoverDownloads()) return;
       if (err instanceof LocalCatalogUnavailableError) throw err;
+      if (err?.statusCode === 503) {
+        // Busy, not broken: retry this same cover after a growing pause, without using up its retry.
+        busyDelayMs = busyDelayMs ? Math.min(busyDelayMs * 2, COVER_BUSY_MAX_DELAY_MS) : COVER_BUSY_FIRST_DELAY_MS;
+        catalogSyncProgress.set('Waiting to resume library sync');
+        await new Promise<void>((resolve) => setTimeout(resolve, busyDelayMs));
+        if (!ownsCoverDownloads()) return;
+        pending.push(cover);
+        continue;
+      }
       if (err?.statusCode === 404) {
         await markCoverState(SyncedCatalogStore.COVER_MISSING);
       } else if (err?.statusCode === 413) {
