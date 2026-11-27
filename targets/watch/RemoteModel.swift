@@ -26,6 +26,12 @@ final class RemoteModel: ObservableObject {
 
     private var sessionObserver: AnyCancellable?
     private var lastRemotePercent = -1
+    /// The volume the watch last sent or took from the player. Crown changes equal to it are the
+    /// watch's own status sync, not the user, so they aren't sent.
+    private var crownBaseline = -1
+    /// The player takes a few seconds to report a volume we just sent; until it does (or 6 s pass),
+    /// older status volumes are ignored so the gauge doesn't jump back.
+    private var pendingVolume: (percent: Int, until: Date)?
     private var pollTask: Task<Void, Never>?
     private var volumeTask: Task<Void, Never>?
     private var isActive = false
@@ -34,6 +40,7 @@ final class RemoteModel: ObservableObject {
     private var holdoff: Date = .distantPast
     /// Ignore status volume briefly after the user turned the crown, so the gauge doesn't jump back.
     private var volumeTouchedAt: Date = .distantPast
+    private let launchedAt = Date()
 
     init() {
         // Re-publish session changes (reachability, application context) to the views.
@@ -72,6 +79,9 @@ final class RemoteModel: ObservableObject {
             apply(reply: reply)
         } catch {
             if case .ready = state, !(error is WatchSessionError) { return }
+            // WatchConnectivity takes a few seconds to activate and find the iPhone after launch;
+            // keep showing the spinner for that long instead of an "unreachable" error.
+            if state == .loading, error is WatchSessionError, Date() < launchedAt.addingTimeInterval(10) { return }
             state = .phoneUnreachable
         }
     }
@@ -103,6 +113,10 @@ final class RemoteModel: ObservableObject {
             seconds = max(1, min(seconds, 3600))
             holdoff = Date().addingTimeInterval(TimeInterval(seconds))
             state = .error("Too many attempts. Try again in \(seconds) s.")
+        case 503:
+            // Busy for a moment. Keep showing what we have; the next poll will catch up.
+            if case .ready = state { return }
+            state = .error("Player is busy. Try again.")
         default:
             state = .error("Player returned HTTP \(code).")
         }
@@ -121,8 +135,12 @@ final class RemoteModel: ObservableObject {
         let raw = (json["volume"] as? NSNumber)?.doubleValue ?? 0
         let norm = raw.isFinite ? max(0, min(1, raw)) : 0.68
         let percent = Int((norm * 100).rounded())
-        if Date().timeIntervalSince(volumeTouchedAt) > 2.5, Int(volume.rounded()) != percent {
-            volume = Double(percent)
+        if let pending = pendingVolume, percent != pending.percent, Date() < pending.until {
+            // Stale: the player hasn't applied our last volume yet.
+        } else if Date().timeIntervalSince(volumeTouchedAt) > 2.5 {
+            pendingVolume = nil
+            crownBaseline = percent
+            if Int(volume.rounded()) != percent { volume = Double(percent) }
         }
         lastRemotePercent = percent
         state = .ready(track: track, isPlaying: playing, volumePercent: Int(volume.rounded()))
@@ -156,6 +174,14 @@ final class RemoteModel: ObservableObject {
         Task {
             do {
                 let reply = try await session.send(op: op)
+                if (reply["code"] as? NSNumber)?.intValue == 503 {
+                    // Say so, then show the player's real state again (this also undoes the
+                    // optimistic play/pause icon if the press didn't take).
+                    state = .error("Player is busy. Try again.")
+                    try? await Task.sleep(for: .seconds(2))
+                    await refresh()
+                    return
+                }
                 if reply["error"] != nil || ((reply["code"] as? NSNumber)?.intValue ?? 0) >= 300 {
                     apply(reply: reply)
                     return
@@ -172,7 +198,9 @@ final class RemoteModel: ObservableObject {
 
     func crownChanged() {
         // Ignore changes we made ourselves when syncing from the player's status.
-        guard Int(volume.rounded()) != lastRemotePercent else { return }
+        guard Int(volume.rounded()) != crownBaseline else { return }
+        // Until the first status arrives the crown sits at a placeholder; don't send that as a volume.
+        guard lastRemotePercent >= 0 else { return }
         volumeTouchedAt = Date()
         if case .ready(let track, let playing, _) = state {
             state = .ready(track: track, isPlaying: playing, volumePercent: Int(volume.rounded()))
@@ -182,6 +210,8 @@ final class RemoteModel: ObservableObject {
             try? await Task.sleep(for: .milliseconds(300))
             guard !Task.isCancelled, let self else { return }
             let percent = Int(self.volume.rounded())
+            self.crownBaseline = percent
+            self.pendingVolume = (percent, Date().addingTimeInterval(6))
             _ = try? await self.session.send(op: "volume", extra: ["percent": percent])
         }
     }

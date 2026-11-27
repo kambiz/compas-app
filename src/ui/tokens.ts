@@ -28,6 +28,11 @@ export const Size = {
   gutter: 16,
   // Content column on wide screens (iPad); App.tsx centres every tab inside it.
   readableWidth: 720,
+  // iOS accessibility text sizes go past 3x; the fixed-height rows and buttons can't grow that far.
+  // 1.35x matches the largest regular text size, which lays out fully; beyond it fixed-height rows clip.
+  maxFontScale: 1.35,
+  // Tab labels share a narrow bar, so they grow less.
+  maxTabLabelScale: 1.15,
 } as const;
 
 export const Type = {

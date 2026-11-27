@@ -41,7 +41,7 @@ export function TabBarItem({ label, icon, selected, hidden, collapse, othersOpac
       >
         <Animated.View style={[styles.content, { opacity: selected ? 1 : othersOpacity }]}>
           <Icon name={icon} size={Size.icon} color={tint} />
-          <AppText variant="micro" numberOfLines={1} style={[styles.label, { color: tint }]}>
+          <AppText variant="micro" numberOfLines={1} maxFontSizeMultiplier={Size.maxTabLabelScale} style={[styles.label, { color: tint }]}>
             {label}
           </AppText>
         </Animated.View>

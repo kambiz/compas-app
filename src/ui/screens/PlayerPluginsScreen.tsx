@@ -17,7 +17,7 @@ import { MessageCard } from '../components/MessageCard';
 import { ScreenTitleBar } from '../components/ScreenTitleBar';
 import { SegmentedControl } from '../components/SegmentedControl';
 import { Spinner } from '../components/Spinner';
-import { Space } from '../tokens';
+import { Size, Space } from '../tokens';
 import { useBackInterceptor } from '../useBackInterceptor';
 import { useScreenInsets } from '../useScreenInsets';
 import { getStoreDetailActions, resolveCurrentStorePlugin } from '../../session/storePluginDetail';
@@ -165,7 +165,7 @@ function renderPluginStore(pluginsApi: PluginsApi | null, screen: PluginsScreen)
         <Button label={t('Refresh store')} icon="refresh" variant="raised" disabled={busy} busy={plugins.store?.state === 'refreshing'} onPress={() => void plugins.mutate(() => pluginsApi!.refreshStore())} />
         <Button label={t('Update all')} icon="refresh" variant="container" disabled={busy || !catalog.some((item) => item.state === 'update')} busy={plugins.store?.state === 'updating_all'} onPress={() => void plugins.mutate(() => pluginsApi!.updateAll())} />
       </View>
-      <TextInput value={query} onChangeText={setQuery} placeholder={t('Search plugins')} placeholderTextColor={palette.inkMuted} style={[styles.search, { backgroundColor: palette.surfaceRaised, color: palette.ink }]} accessibilityLabel={t('Search plugins')} />
+      <TextInput maxFontSizeMultiplier={Size.maxFontScale} value={query} onChangeText={setQuery} placeholder={t('Search plugins')} placeholderTextColor={palette.inkMuted} style={[styles.search, { backgroundColor: palette.surfaceRaised, color: palette.ink }]} accessibilityLabel={t('Search plugins')} />
       {categories.length ? <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.row}>
         <Button label={t('All categories')} size="sm" variant={category ? 'raised' : 'container'} onPress={() => setCategory('')} />
         {categories.map((item) => <Button key={item} label={item} size="sm" variant={category === item ? 'container' : 'raised'} onPress={() => setCategory(item)} />)}

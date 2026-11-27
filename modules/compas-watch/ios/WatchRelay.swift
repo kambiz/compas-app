@@ -121,12 +121,25 @@ final class WatchRelay: NSObject, WCSessionDelegate {
     request.httpMethod = method
     if let pin = player.pin, !pin.isEmpty { request.setValue(pin, forHTTPHeaderField: "X-Compas-PIN") }
 
-    session.dataTask(with: request) { data, response, error in
+    // The player answers 503 while it is busy (for example right after a track change). A status
+    // read is safe to repeat, so try it once more; commands are never repeated, because the player
+    // may have acted on one before answering busy and a second play/pause would undo it.
+    send(request, retryOnBusy: method == "GET", reply: reply)
+  }
+
+  private func send(_ request: URLRequest, retryOnBusy: Bool, reply: @escaping ([String: Any]) -> Void) {
+    session.dataTask(with: request) { [weak self] data, response, error in
       if let error = error {
         reply(["error": "network", "message": error.localizedDescription])
         return
       }
       let code = (response as? HTTPURLResponse)?.statusCode ?? 0
+      if code == 503, retryOnBusy, let self = self {
+        DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
+          self.send(request, retryOnBusy: false, reply: reply)
+        }
+        return
+      }
       let body = data.flatMap { String(data: $0, encoding: .utf8) } ?? ""
       reply(["code": code, "body": body])
     }.resume()

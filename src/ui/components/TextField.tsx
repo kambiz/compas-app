@@ -63,6 +63,7 @@ export function TextField({
         placeholderTextColor={palette.inkMuted}
         selectionColor={palette.accent}
         cursorColor={palette.accent}
+        maxFontSizeMultiplier={Size.maxFontScale}
         {...inputProps}
         style={[
           styles.input,

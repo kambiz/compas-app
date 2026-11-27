@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, TextProps } from 'react-native';
 import { Palette } from '../palette';
 import { usePalette } from '../PaletteProvider';
-import { TabularNumbers, Type, TypeVariant } from '../tokens';
+import { Size, TabularNumbers, Type, TypeVariant } from '../tokens';
 
 export type TextTone = 'ink' | 'inkMuted' | 'accent' | 'onAccent' | 'onAccentContainer' | 'statusError';
 
@@ -20,6 +20,7 @@ export function AppText({ variant = 'body', tone = 'ink', tabular, style, ...res
   const palette = usePalette();
   return (
     <Text
+      maxFontSizeMultiplier={Size.maxFontScale}
       {...rest}
       style={[Type[variant], { color: toneColor(palette, tone) }, tabular && TabularNumbers, style]}
     />
