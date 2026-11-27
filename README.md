@@ -131,7 +131,6 @@ Changes to shared code are kept small and are mostly behind `Platform.OS` checks
 ### Known issues
 
 - Deleting a folder on the player's SD card only works when the folder is empty; otherwise the app shows "Could not complete the selected action." The player refuses the request, so the fix is either a recursive delete in the app or a clearer message. The confirmation also says "Delete file?" for folders.
-- The PIN is saved per player address. If the router gives the player a new address, the app finds it again automatically but asks for the PIN again.
 - After removing a song from Up Next, it stays listed for about 5 seconds until the next status update.
 - The player can take a few seconds to report a track or volume change, so the Apple Watch may briefly show the previous song.
 - The iOS bundle ID is currently `com.compas.remote`, borrowed from the Android app. It must change before an App Store release.

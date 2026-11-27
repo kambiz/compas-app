@@ -10,9 +10,13 @@ import {
   stopDiscovery as stopWifiDiscoveryModule,
   addDeviceFoundListener as addWifiDeviceFoundListener,
   addDeviceLostListener as addWifiDeviceLostListener,
+  addDiscoveryErrorListener as addWifiDiscoveryErrorListener,
 } from '../../modules/compas-discovery/src/index';
 import type { createConnectionDiscovery } from './connectionDiscovery';
 import type { SessionState } from './useSessionRefs';
+
+/** kDNSServiceErr_PolicyDenied: the user turned off Local Network access for the app. */
+const DNS_SERVICE_POLICY_DENIED = -65570;
 
 type DiscoverySubscriptions = {
   shared: Pick<SessionState, 'discoveryGenerationRef' | 'mountedRef' | 'setState'>;
@@ -95,6 +99,13 @@ export function useConnectionDiscoveryEffects(deps: DiscoverySubscriptions) {
   useEffect(() => {
     const found = addWifiDeviceFoundListener(onWifiFound);
     const lost = addWifiDeviceLostListener(onWifiLost);
-    return () => { found?.remove(); lost?.remove(); };
+    // iOS reports Local Network access turned off as DNS-SD "policy denied". Show the
+    // "Couldn't search this network" notice instead of an empty list; a later find clears it.
+    const failed = addWifiDiscoveryErrorListener((event) => {
+      if (event.errorCode !== DNS_SERVICE_POLICY_DENIED || !deps.ownsPicker(ConnectionTransport.Wifi)) return;
+      deps.shared.setState((prev) => (prev.wifiPlayers.length === 0
+        ? { ...prev, wifiDiscoveryStatus: ContentStatus.Error } : prev));
+    });
+    return () => { found?.remove(); lost?.remove(); failed?.remove(); };
   }, []);
 }

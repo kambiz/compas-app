@@ -18,6 +18,9 @@ import {
 } from './PermissionPolicy';
 import type { NowPlayingArtwork } from './NowPlayingArtwork';
 
+/** PIN storage key for a player's library, which survives address changes. */
+const libraryPinKey = (libraryId: string) => `library:${libraryId}`;
+
 export interface ConnectionAttemptDependencies {
   shared: Pick<SessionState,
     'apiRef' | 'autoReconnectDueAtRef' | 'autoReconnectEnabledRef' | 'autoReconnectGenerationRef'
@@ -229,8 +232,21 @@ const connectDirect = async function (
 
   const { api, playerKey } = target;
   const isCurrentAttempt = () => attempt === connectionAttemptRef.current && !cancelled();
-  const pinToUse = explicitPin || (await pinStoreRef.current.get(playerKey)) || undefined;
+  let pinToUse = explicitPin || (await pinStoreRef.current.get(playerKey)) || undefined;
+  // Set when the PIN came from the library-ID fallback, so a rejection can forget it too.
+  let staleLibraryKey: string | null = null;
   if (!isCurrentAttempt()) return false;
+  if (!pinToUse && transport === ConnectionTransport.Wifi) {
+    // The router may have given the player a new address. Its library ID is public and stays the
+    // same, so reuse the PIN saved for it; a wrong PIN falls back to asking, as before.
+    const libraryId = await api.capabilities({ omitPin: true }).then((c) => c.libraryId).catch(() => null);
+    if (!isCurrentAttempt()) return false;
+    if (libraryId) {
+      pinToUse = (await pinStoreRef.current.get(libraryPinKey(libraryId))) || undefined;
+      if (pinToUse) staleLibraryKey = libraryPinKey(libraryId);
+    }
+    if (!isCurrentAttempt()) return false;
+  }
   if (pinToUse) api.setPin(pinToUse);
 
   try {
@@ -242,9 +258,16 @@ const connectDirect = async function (
     // Persist before committing; cancellation during secure storage must not revive the session.
     const pinNotSaved = !!pinToUse && !(await pinStoreRef.current.put(playerKey, pinToUse));
     if (!isCurrentAttempt()) return false;
+    if (pinToUse && caps.libraryId && transport === ConnectionTransport.Wifi) {
+      await pinStoreRef.current.put(libraryPinKey(caps.libraryId), pinToUse);
+      if (!isCurrentAttempt()) return false;
+    }
     this.commitConnection(api, playerKey, transport, status, caps.features, attempt, pinNotSaved);
     return true;
   } catch (err: any) {
+    if (staleLibraryKey && (err?.statusCode || err?.status) === 401) {
+      await pinStoreRef.current.remove(staleLibraryKey).catch(() => {});
+    }
     return this.handleConnectionFailure(err, transport, playerKey, pinToUse, explicitPin, isCurrentAttempt);
   }
 };
